@@ -1,0 +1,7 @@
+# Byte-compiled / optimized / DLL files
+env/
+env
+.vscode
+
+__pycache__/
+*.py[cod]
