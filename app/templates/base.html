@@ -5,43 +5,54 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Flask Auth Example</title>
+    <title>TEC _SYSTEMAS</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
 </head>
 
 <body>
-    <section class="hero is-primary is-fullheight">
-
-        <div class="hero-head">
+    <section>
+        <div class="hero is-primary is-widescreen">
             <nav class="navbar">
                 <div class="container">
+
                     <div id="navbarMenuHeroA" class="navbar-menu">
+                        <div class="navbar-start">
+                            {% if current_user.is_authenticated %}
+                            <h6 class="navbar-item">Online, {{current_user.name | upper}}</h6>
+                            {% endif %} 
+                        </div>
+     
                         <div class="navbar-end">
-                            <a href="{{ url_for('main.index') }}" class="navbar-item">
-                                Home
+                            <a href="{{ url_for('main.index') }}" class="navbar-item" title="Home">
+                                <i class="fa-solid fa-house" title="Home"></i>
                             </a>
 
                             {% if current_user.is_authenticated %}
-                            <a href="{{ url_for('main.profile') }}" class="navbar-item">
-                                Profile
+                            <a href="{{ url_for('main.profile') }}" title="User Settings" class="navbar-item">
+                                <i class="fa-solid fa-user" title="User Settings"></i>
+                            </a>
+
+                            <a href="{{ url_for('called.called_table') }}" title="Chamados" class="navbar-item">
+                                <i class="fa-solid fa-ticket" title="Chamados"></i>
                             </a>
                             {% endif %}
 
                             {% if not current_user.is_authenticated %}
-                            <a href="{{ url_for('auth.login') }}" class="navbar-item">
-                                Login
+                            <a href="{{ url_for('auth.login') }}" title="Login" class="navbar-item">
+                                <i class="fa-solid fa-power-off" title="Login"></i>
                             </a>
                             {% endif %}
 
                             {% if current_user.is_authenticated %}
-                            <a href="{{ url_for('auth.signup') }}" class="navbar-item">
-                                Sign Up
+                            <a href="{{ url_for('auth.signup') }}" title="Cadastrar-se" class="navbar-item">
+                                <i class="fa-solid fa-user-plus" title="Cadastrar-se"></i>
                             </a>
                             {% endif %}
 
                             {% if current_user.is_authenticated %}
-                            <a href="{{ url_for('auth.logout') }}" class="navbar-item">
-                                Logout
+                            <a href="{{ url_for('auth.logout') }}" title="Sair" class="navbar-item">
+                                <i class="fa-solid fa-circle-xmark" title="Sair"></i>
                             </a>
                             {% endif %}
                         </div>
@@ -49,14 +60,11 @@
                 </div>
             </nav>
         </div>
-
-        <div class="hero-body">
-            <div class="container has-text-centered">
-                {% block content %}
-                {% endblock %}
-            </div>
-        </div>
     </section>
-</body>
 
+    <div class="container is-widescreen" style="margin-top:10px;">
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
 </html>
