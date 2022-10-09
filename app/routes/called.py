@@ -13,14 +13,14 @@ def called_table():
 @called.route('/service', methods=['POST'])
 @login_required
 def called_save():
-   ticket_number = request.form.get('ticket_number')
-   name_customer = request.form.get('name_customer')
-   status_ticket = request.form.get('status_ticket')
-   description = request.form.get('description')
+   # ticket_number = request.form.get('ticket_number')
+   # name_customer = request.form.get('name_customer')
+   # status_ticket = request.form.get('status_ticket')
+   # description = request.form.get('description')
 
-   print(ticket_number)
-   print(name_customer)
-   print(status_ticket)
-   print(description)
+   # print(ticket_number)
+   # print(name_customer)
+   # print(status_ticket)
+   # print(description)
 
    return render_template('service/called_table.html')

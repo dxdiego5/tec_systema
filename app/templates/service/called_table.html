@@ -3,12 +3,19 @@
 {% block content %}
 <form class="box" method="POST" action="/service">
 
+      <div class="columns is-desktop">
+            <div class="column is-half is-offset-one-quarter">
+                  <p class="title is-5">Cadastrar novo status de chamado, notificações ou alertas.</p>
+            </div>
+      </div>
+
       <div class="columns is-desktop is-mobile">
             <div class="column">
                   <div class="field">
                         <label class="label">Numero Chamado</label>
                         <div class="control">
-                              <input class="input" type="number" placeholder="9999" name="ticket_number">
+                              <input class="input" type="number" placeholder="9999" name="ticket_number" min="1"
+                                    required="required">
                         </div>
                   </div>
             </div>
@@ -16,7 +23,8 @@
                   <div class="field">
                         <label class="label">Cliente</label>
                         <div class="control">
-                              <input class="input" type="text" placeholder="Nome Exemplo" name="name_customer">
+                              <input class="input" type="text" placeholder="Nome Exemplo" name="name_customer"
+                                    required="required">
                         </div>
                   </div>
             </div>
@@ -25,7 +33,7 @@
                         <label class="label">Status</label>
                         <div class="control has-icons-left">
                               <div class="select">
-                                    <select name="status_ticket">
+                                    <select name="status_ticket" required="required">
                                           <option value="1" selected>novo chamado</option>
                                     </select>
                               </div>
@@ -40,6 +48,18 @@
       <div class="columns is-desktop is-mobile">
             <div class="column">
                   <div class="field">
+                        <input id="switch_repeat_called_day" type="checkbox" name="switch_repeat_called_day"
+                              class="switch is-rounded" onclick="switch_repeat_called();">
+                        <label for="switch_repeat_called_day">Repetir por (Dia)</label>
+                  </div>
+                  <input id="repeat_called_day" class="input" type="number" value="0" name="repeat_called_day" min="0">
+            </div>
+      </div>
+
+
+      <div class="columns is-desktop is-mobile">
+            <div class="column">
+                  <div class="field">
                         <label class="label">Descrição</label>
                         <div class="control">
                               <textarea name="description" class="textarea"
@@ -49,6 +69,8 @@
             </div>
       </div>
 
-      <button class="button is-primary">salvar</button>
+      <button class="button is-primary"><i class="fa-solid fa-floppy-disk"></i> &nbsp; salvar</button>
 </form>
+
+<script type="text/javascript" src="../static/js/switch_repeat_called_day.js"></script>
 {% endblock content %}
