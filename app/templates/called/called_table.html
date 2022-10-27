@@ -1,0 +1,14 @@
+{% from "called/macros/call_list.html" import hello %}
+{% extends "base.html" %}
+
+{% block content %}
+<div class="columns is-desktop">
+  <div class="column is-half is-offset-one-quarter">
+    <p class="title is-5">Lista de status de chamado, notificações e alertas</p>
+  </div>
+</div>
+<hr />
+
+{{ hello(Pokemons) }}
+
+{% endblock content %}

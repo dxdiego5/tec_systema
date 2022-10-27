@@ -1,13 +1,15 @@
 {% extends "base.html" %}
 
 {% block content %}
-<form class="box" method="POST" action="/service">
+<form class="box" method="POST" action="/called">
 
       <div class="columns is-desktop">
             <div class="column is-half is-offset-one-quarter">
                   <p class="title is-5">Cadastrar novo status de chamado, notificações ou alertas.</p>
             </div>
       </div>
+
+      <hr />
 
       <div class="columns is-desktop is-mobile">
             <div class="column">
@@ -62,14 +64,14 @@
                   <div class="field">
                         <label class="label">Descrição</label>
                         <div class="control">
-                              <textarea name="description" class="textarea"
+                              <textarea required="required" name="description" class="textarea"
                                     placeholder="Exemplo descricao do problema..."></textarea>
                         </div>
                   </div>
             </div>
       </div>
 
-      <button class="button is-primary"><i class="fa-solid fa-floppy-disk"></i> &nbsp; salvar</button>
+      <button type="submit" class="button is-primary"><i class="fa-solid fa-floppy-disk"></i> &nbsp; salvar</button>
 </form>
 
 <script type="text/javascript" src="../static/js/switch_repeat_called_day.js"></script>

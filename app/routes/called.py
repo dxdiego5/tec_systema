@@ -4,23 +4,23 @@ from flask_login import login_required, current_user
 
 called = Blueprint('called', __name__)
 
-@called.route('/service')
+@called.route('/called')
 @login_required
-def called_table():
-   return render_template('service/called_table.html')
+def open_called():
+   return render_template('called/called_create.html')
 
 
-@called.route('/service', methods=['POST'])
+@called.route('/called', methods=['POST'])
 @login_required
-def called_save():
-   # ticket_number = request.form.get('ticket_number')
-   # name_customer = request.form.get('name_customer')
-   # status_ticket = request.form.get('status_ticket')
-   # description = request.form.get('description')
+def called_post():
+   return render_template('called/called_table.html')
 
-   # print(ticket_number)
-   # print(name_customer)
-   # print(status_ticket)
-   # print(description)
 
-   return render_template('service/called_table.html')
+@called.route('/call_list')
+@login_required
+def called_list():
+
+   Pokemons =["Pikachu", "Charizard", "Squirtle", "Jigglypuff",  
+           "Bulbasaur", "Gengar", "Charmander", "Mew", "Lugia", "Gyarados"]
+         #   ,len = len(Pokemons), Pokemons = Pokemons
+   return render_template('called/called_table.html', Pokemons = Pokemons)
