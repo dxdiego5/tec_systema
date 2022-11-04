@@ -1,5 +1,4 @@
 from flask_login import UserMixin
-from sqlalchemy import Table
 
 """" Usar para aplicação rodando """
 from .. import db  
@@ -9,6 +8,13 @@ from .. import db
 # db = SQLAlchemy()
 
 """" Inicialização das Models (Tabelas do BD)  """
+class Status(db.Model):
+    __tablename__ = 'status'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(40))
+    color = db.Column(db.String(10))
+    isActive = db.Column(db.Boolean, default=True)
+    
 class PermissionProfile(db.Model):
     __tablename__ = 'permissions_profile'
     id = db.Column(db.Integer, primary_key=True)
@@ -27,3 +33,11 @@ class Users(db.Model, UserMixin):
     password = db.Column(db.String())
     isActive = db.Column(db.Boolean, default=True)
     permissions_profile_id = db.Column(db.Integer, db.ForeignKey('permissions_profile.id', onupdate='CASCADE'))
+
+
+class Client(db.Model):
+    __tablename__ = 'clients'
+    id = db.Column(db.Integer, primary_key=True)
+    company_name = db.Column(db.String(80))
+    type_client = db.Column(db.String(4))
+    isActive = db.Column(db.Boolean, default=True)

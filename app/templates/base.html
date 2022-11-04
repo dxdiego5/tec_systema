@@ -9,6 +9,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
     <link rel="stylesheet" href="static/css/bulma-switch.min.css" />
+
+    {% block link_css %}
+    {% endblock %}
+
 </head>
 
 <body>
@@ -68,6 +72,11 @@
         {% block content %}
         {% endblock %}
     </div>
+
+
+
+        {% block link_js %}
+        {% endblock %}
 </body>
 
 </html>

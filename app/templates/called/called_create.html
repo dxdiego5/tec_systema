@@ -1,5 +1,10 @@
 {% extends "base.html" %}
 
+{% block link_css %}
+      <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+{% endblock %}
+
+
 {% block content %}
 <form class="box" method="POST" action="/called">
 
@@ -25,9 +30,11 @@
                   <div class="field">
                         <label class="label">Cliente</label>
                         <div class="control">
-                              <input class="input" type="text" placeholder="Nome Exemplo" name="name_customer"
+                              <input id='company_name' class="input" type="text" placeholder="Nome Exemplo" name="name_customer"
                                     required="required">
                         </div>
+                        <!-- <input type="text" id="esporte" placeholder="Informe um esporte"/> -->
+
                   </div>
             </div>
             <div class="column">
@@ -36,12 +43,14 @@
                         <div class="control has-icons-left">
                               <div class="select">
                                     <select name="status_ticket" required="required">
-                                          <option value="1" selected>novo chamado</option>
+                                          {% for item in status %}
+                                                <option id="{{item.id}}" value="{{item.id}}">{{item.name}}</option>
+                                          {% endfor %}
                                     </select>
                               </div>
                               <div class="icon is-small is-left">
                                     <i class="fa-solid fa-plus"></i>
-                              </div>
+                              </div> 
                         </div>
                   </div>
             </div>
@@ -76,3 +85,19 @@
 
 <script type="text/javascript" src="../static/js/switch_repeat_called_day.js"></script>
 {% endblock content %}
+
+
+{% block link_js %}
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+
+<script>
+      $(function() {
+        var company_name = {{clients|safe}}; // erro safe
+        $("#company_name").autocomplete({
+          source: company_name
+        });
+      });
+</script>
+{% endblock %}
+
