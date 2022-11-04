@@ -6,11 +6,11 @@
 
 
 {% block content %}
-<form class="box" method="POST" action="/called">
+<form class="box" method="POST" action="/ticket">
 
       <div class="columns is-desktop">
-            <div class="column is-half is-offset-one-quarter">
-                  <p class="title is-5">Cadastrar novo status de chamado, notificações ou alertas.</p>
+            <div class="column">
+                  <p class="title is-5">Novo ticket</p>
             </div>
       </div>
 
@@ -30,10 +30,9 @@
                   <div class="field">
                         <label class="label">Cliente</label>
                         <div class="control">
-                              <input id='company_name' class="input" type="text" placeholder="Nome Exemplo" name="name_customer"
-                                    required="required">
+                              <input id='company_name' class="input" type="text" placeholder="Nome Exemplo" name="company_name"
+                                    required="required" value="">
                         </div>
-                        <!-- <input type="text" id="esporte" placeholder="Informe um esporte"/> -->
 
                   </div>
             </div>
@@ -59,11 +58,11 @@
       <div class="columns is-desktop is-mobile">
             <div class="column">
                   <div class="field">
-                        <input id="switch_repeat_called_day" type="checkbox" name="switch_repeat_called_day"
-                              class="switch is-rounded" onclick="switch_repeat_called();">
-                        <label for="switch_repeat_called_day">Repetir por (Dia)</label>
+                        <input id="switch_repeat_ticket_day" type="checkbox" name="switch_repeat_ticket_day"
+                              class="switch is-rounded" onclick="switch_repeat_ticket();">
+                        <label for="switch_repeat_ticket_day">Repetir por (Dia)</label>
                   </div>
-                  <input id="repeat_called_day" class="input" type="number" value="0" name="repeat_called_day" min="0">
+                  <input id="repeat_ticket_day" class="input" type="number" value="0" name="repeat_ticket_day" min="0">
             </div>
       </div>
 
@@ -73,7 +72,7 @@
                   <div class="field">
                         <label class="label">Descrição</label>
                         <div class="control">
-                              <textarea required="required" name="description" class="textarea"
+                              <textarea minlength="5" maxlength="220" required="required" name="description" class="textarea"
                                     placeholder="Exemplo descricao do problema..."></textarea>
                         </div>
                   </div>
@@ -83,7 +82,7 @@
       <button type="submit" class="button is-primary"><i class="fa-solid fa-floppy-disk"></i> &nbsp; salvar</button>
 </form>
 
-<script type="text/javascript" src="../static/js/switch_repeat_called_day.js"></script>
+<script type="text/javascript" src="../static/js/switch_repeat_ticket_day.js"></script>
 {% endblock content %}
 
 
@@ -93,7 +92,7 @@
 
 <script>
       $(function() {
-        var company_name = {{clients|safe}}; // erro safe
+        var company_name = {{clients|safe}}; // error safe
         $("#company_name").autocomplete({
           source: company_name
         });

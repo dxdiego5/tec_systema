@@ -24,23 +24,23 @@
                     <div id="navbarMenuHeroA" class="navbar-menu">
                         <div class="navbar-start teste">
                             {% if current_user.is_authenticated %}
-                            <h6 class="navbar-item">Online, {{current_user.name | upper}}</h6>
+                            <h6 class="navbar-item">Bem vindo, {{current_user.name | lower}}</h6>
                             {% endif %}
                         </div>
 
                         <div class="navbar-end">
-                            <a href="{{ url_for('main.index') }}" class="navbar-item" title="Home">
-                                <i class="fa-solid fa-house" title="Home"></i>
-                            </a>
+
 
                             {% if current_user.is_authenticated %}
-                            <a href="{{ url_for('main.profile') }}" title="User Settings" class="navbar-item">
-                                <i class="fa-solid fa-user" title="User Settings"></i>
+                            <a href="{{ url_for('ticket.open_ticket') }}" title="Novo chamado" class="navbar-item">
+                                ticket
                             </a>
 
-                            <a href="{{ url_for('called.open_called') }}" title="Chamados" class="navbar-item">
-                                <i class="fa-solid fa-ticket" title="Chamados"></i>
+                            <a href="{{ url_for('main.profile') }}" title="Configurações" class="navbar-item">
+                                profile
                             </a>
+
+
                             {% endif %}
 
                             {% if not current_user.is_authenticated %}
@@ -49,18 +49,23 @@
                             </a>
                             {% endif %}
 
-                            {% if current_user.is_authenticated %}
+                            <!-- {% if current_user.is_authenticated %}
                             <a href="{{ url_for('auth.signup') }}" title="Cadastrar-se" class="navbar-item">
                                 <i class="fa-solid fa-user-plus" title="Cadastrar-se"></i>
                             </a>
-                            {% endif %}
+                            {% endif %} -->
+                            <a href="{{ url_for('main.index') }}" class="navbar-item" title="Home">
+                                home
+                            </a>
 
                             {% if current_user.is_authenticated %}
                             <a href="{{ url_for('auth.logout') }}" title="Sair" class="navbar-item"
-                                style="margin-left: 30px !important;">
-                                <i class="fa-solid fa-circle-xmark" title="Sair"></i>
+                                style="margin-left: 60px !important;">
+                                sair
                             </a>
                             {% endif %}
+
+
                         </div>
                     </div>
                 </div>

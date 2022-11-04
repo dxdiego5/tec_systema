@@ -24,7 +24,6 @@ class PermissionProfile(db.Model):
     permission = db.Column(db.String(200))
     isActive = db.Column(db.Boolean, default=True)
 
-
 class Users(db.Model, UserMixin):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
@@ -34,10 +33,21 @@ class Users(db.Model, UserMixin):
     isActive = db.Column(db.Boolean, default=True)
     permissions_profile_id = db.Column(db.Integer, db.ForeignKey('permissions_profile.id', onupdate='CASCADE'))
 
-
 class Client(db.Model):
     __tablename__ = 'clients'
     id = db.Column(db.Integer, primary_key=True)
     company_name = db.Column(db.String(80))
-    type_client = db.Column(db.String(4))
+    type_client = db.Column(db.String(4), default=None)
     isActive = db.Column(db.Boolean, default=True)
+
+class Ticket(db.Model):
+    __tablename__ = 'tickets'
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id', onupdate='CASCADE'))
+    clients_id = db.Column(db.Integer, db.ForeignKey('clients.id', onupdate='CASCADE'))
+    status_id = db.Column(db.Integer, db.ForeignKey('status.id', onupdate='CASCADE'))
+    description = db.Column(db.String)
+    repeat_day = db.Column(db.Integer, default=0)
+    create_at = db.Column(db.DateTime)
+    updated_at = db.Column(db.DateTime)
+    

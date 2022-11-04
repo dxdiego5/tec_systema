@@ -39,7 +39,7 @@ def create_app():
     from .routes.main import main as main_blueprint
     app.register_blueprint(main_blueprint)
 
-    from .routes.called import called as called_blueprint
-    app.register_blueprint(called_blueprint)
+    from .routes.ticket import ticket as ticket_blueprint
+    app.register_blueprint(ticket_blueprint)
 
     return app
