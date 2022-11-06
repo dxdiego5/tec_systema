@@ -47,6 +47,7 @@ class Ticket(db.Model):
     clients_id = db.Column(db.Integer, db.ForeignKey('clients.id', onupdate='CASCADE'))
     status_id = db.Column(db.Integer, db.ForeignKey('status.id', onupdate='CASCADE'))
     description = db.Column(db.String)
+    ticket_number = db.Column(db.String, default=0)
     repeat_day = db.Column(db.Integer, default=0)
     create_at = db.Column(db.DateTime)
     updated_at = db.Column(db.DateTime)

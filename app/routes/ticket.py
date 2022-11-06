@@ -44,7 +44,7 @@ def ticket_post():
       
    date_time = date_time_now()
 
-   ticket = Ticket(user_id=user.id, clients_id=client.id, status_id=status.id,description=description,
+   ticket = Ticket(user_id=user.id, clients_id=client.id, status_id=status.id,description=description,ticket_number=ticket_number,
       repeat_day=repeat_ticket_day,create_at=date_time, updated_at=date_time)
    
    db.session.add(ticket)

@@ -30,7 +30,7 @@ def add_permissions_profile():
     return session.add(permis_profile1)
 
 def add_users():
-    user1 = Users(name='Diego Felipe',user_name='diego',password='12345',isActive=True, permissions_profile_id=1)
+    user1 = Users(name='Diego Felipe',user_name='diego',password=generate_password_hash('12345', method='sha256'),isActive=True, permissions_profile_id=1)
     return session.add(user1)
 
 def add_status():
