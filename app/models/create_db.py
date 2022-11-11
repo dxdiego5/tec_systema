@@ -4,7 +4,7 @@ import configparser
 from werkzeug.security import generate_password_hash, check_password_hash
 import sqlite3
 import os.path
-from models import db, PermissionProfile, Users, Status, Client
+from models import db, PermissionProfile, Users, Status, Clients
 
 filepath = os.path.abspath('app/data.db')
 
@@ -47,16 +47,16 @@ def add_status():
     session.add(status4)
 
 def add_client():
-    client1 = Client(company_name='Diego Felipe',type_client='PF')
+    client1 = Clients(company_name='Diego Felipe',type_client='PF')
     session.add(client1)
 
-    client2 = Client(company_name='Esc. Valter Leite',type_client='PJ')
+    client2 = Clients(company_name='Esc. Valter Leite',type_client='PJ')
     session.add(client2)
 
-    client3 = Client(company_name='Esc. Jardim Bela Vista',type_client='PJ')
+    client3 = Clients(company_name='Esc. Jardim Bela Vista',type_client='PJ')
     session.add(client3)
 
-    client4 = Client(company_name='Cemeis. São Domingos',type_client='PJ')
+    client4 = Clients(company_name='Cemeis. São Domingos',type_client='PJ')
     session.add(client4)
 
 create_database_table()

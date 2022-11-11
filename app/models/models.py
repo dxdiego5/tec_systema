@@ -1,4 +1,8 @@
 from flask_login import UserMixin
+from sqlalchemy.orm import lazyload
+from sqlalchemy.orm import relationship
+
+
 
 """" Usar para aplicação rodando """
 from .. import db  
@@ -6,6 +10,8 @@ from .. import db
 """ Usar para criar o banco de dados """
 # from flask_sqlalchemy import SQLAlchemy
 # db = SQLAlchemy()
+
+
 
 """" Inicialização das Models (Tabelas do BD)  """
 class Status(db.Model):
@@ -32,23 +38,32 @@ class Users(db.Model, UserMixin):
     password = db.Column(db.String())
     isActive = db.Column(db.Boolean, default=True)
     permissions_profile_id = db.Column(db.Integer, db.ForeignKey('permissions_profile.id', onupdate='CASCADE'))
+    permissionProfile = relationship('PermissionProfile', backref = 'permissions_profile')
 
-class Client(db.Model):
+class Clients(db.Model):
     __tablename__ = 'clients'
     id = db.Column(db.Integer, primary_key=True)
     company_name = db.Column(db.String(80))
     type_client = db.Column(db.String(4), default=None)
     isActive = db.Column(db.Boolean, default=True)
 
-class Ticket(db.Model):
+class Tickets(db.Model):
     __tablename__ = 'tickets'
     id = db.Column(db.Integer, primary_key=True)
+    
     user_id = db.Column(db.Integer, db.ForeignKey('users.id', onupdate='CASCADE'))
+    user = relationship('Users', backref = 'users')
+
     clients_id = db.Column(db.Integer, db.ForeignKey('clients.id', onupdate='CASCADE'))
+    client = relationship('Clients', backref = 'clients')
+
+
     status_id = db.Column(db.Integer, db.ForeignKey('status.id', onupdate='CASCADE'))
+    status = relationship('Status', backref = 'status')
+
     description = db.Column(db.String)
     ticket_number = db.Column(db.String, default=0)
     repeat_day = db.Column(db.Integer, default=0)
-    create_at = db.Column(db.DateTime)
+    created_at = db.Column(db.DateTime)
     updated_at = db.Column(db.DateTime)
     

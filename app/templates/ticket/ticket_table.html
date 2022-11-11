@@ -1,14 +1,57 @@
-{% from "ticket/macros/ticket_list.html" import hello %}
+<!-- {% from "ticket/macros/ticket_list.html" import hello %} -->
 {% extends "base.html" %}
 
+
 {% block content %}
-<div class="columns is-desktop">
+<!-- <div class="columns is-desktop">
   <div class="column is-half is-offset-one-quarter">
     <p class="title is-5">Lista de status de chamado, notificações e alertas</p>
   </div>
 </div>
-<hr />
+<hr />-->
 
-{{ hello(Pokemons) }}
+
+<div class="container is-fluid"> 
+  <p class="title is-4">Lista de status de chamado, notificações e alertas</p>
+
+  <hr />
+
+  <div class="table-container">
+    <table id="example" class="table is-striped" style="width:100%">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>N: OS</th>
+          <th>CLIENTE</th>
+          <th>DESCRIÇÃO</th>
+          <th>ABERTURA</th>
+          <th>STATUS</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{ '' if tickets is not none else 'Não tem registros cadastrados' }}
+        {% for ticket in tickets %}
+        <tr style="background-color: {{ticket.status.color}}; color: #FFFF;">
+          <td>{{ticket.id}}</td>
+          <td>{{ticket.ticket_number}}</td>
+          <td>{{ticket.client.company_name}}</td>
+          <td>{{ticket.description|truncate(30)}}</td>
+          <td>{{ticket.created_at.strftime('%d/%m/%Y - %H:%M')}}</td>
+          <td>{{ticket.status.name}}</td>
+        </tr>
+        <tr>
+          {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+</div>
+</div>
+
 
 {% endblock content %}
+
+{% block link_js %}
+
+
+{% endblock %}

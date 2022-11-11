@@ -1,6 +1,29 @@
 {% macro hello(Pokemons) %}
+<div class="table-container">
+  <table id="exemplo" class="table is-bordered is-fullwidth is-hoverable">
+    <thead>
+      <tr>
+        <th><abbr title="Position">Pos</abbr></th>
+        <th>Team</th>
+      </tr>
+    </thead>
+    <tfoot>
+      <tr>
+        <th><abbr title="Position">Pos</abbr></th>
+        <th>Team</th>
+      </tr>
+    </tfoot>
+    <tbody>
+      {% for info in Pokemons %}
+      <tr>
+        <th>1</th>
+        <td>38</td>
+      </tr>
+      <tr>
+        {% endfor %}
 
-{% for info in Pokemons %}
-<p>{{info}}</p>
-{% endfor %}
+    </tbody>
+  </table>
+</div>
 {% endmacro %}
+
