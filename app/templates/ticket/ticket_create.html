@@ -8,13 +8,13 @@
 {% block content %}
 <form class="box" method="POST" action="/ticket">
 
-      <div class="columns is-desktop">
+      <!-- <div class="columns is-desktop">
             <div class="column">
                   <p class="title is-5">Novo ticket</p>
             </div>
       </div>
 
-      <hr />
+      <hr /> -->
 
       <div class="columns is-desktop is-mobile">
             <div class="column">
@@ -79,7 +79,7 @@
             </div>
       </div>
 
-      <button type="submit" class="button is-primary"><i class="fa-solid fa-floppy-disk"></i> &nbsp; salvar</button>
+      <button type="submit" class="button is-primary is-outlined"><i class="fa-solid fa-floppy-disk"></i> &nbsp; salvar</button>
 </form>
 
 <script type="text/javascript" src="../static/js/switch_repeat_ticket_day.js"></script>
@@ -96,7 +96,7 @@
         $("#company_name").autocomplete({
           source: company_name
         });
-      });
+      });// error safe
 </script>
 {% endblock %}
 

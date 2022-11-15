@@ -31,7 +31,9 @@ def add_permissions_profile():
 
 def add_users():
     user1 = Users(name='Diego Felipe',user_name='diego',password=generate_password_hash('12345', method='sha256'),isActive=True, permissions_profile_id=1)
-    return session.add(user1)
+    user2 = Users(name='Master',user_name='master',password=generate_password_hash('12345', method='sha256'),isActive=True, permissions_profile_id=1)
+    session.add(user1)
+    session.add(user2)
 
 def add_status():
     status1 = Status(name='novo chamado', color='#00afe9')

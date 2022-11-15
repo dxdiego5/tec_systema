@@ -9,12 +9,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
     <link rel="stylesheet" href="static/css/bulma-switch.min.css" />
+    <link rel="stylesheet" href="static/css/style.css" />
 
     {% block link_css %}
     {% endblock %}
 
 </head>
-
 <body>
     <section>
         <div class="hero is-primary is-widescreen">
@@ -24,28 +24,32 @@
                     <div id="navbarMenuHeroA" class="navbar-menu">
                         <div class="navbar-start teste">
                             {% if current_user.is_authenticated %}
-                            <h6 class="navbar-item">Bem vindo, {{current_user.name | lower}}</h6>
+                            <h6 class="navbar-item" style="color: white;">Bem vindo, {{current_user.name | lower}}</h6>
                             {% endif %}
                         </div>
 
                         <div class="navbar-end">
 
-
                             {% if current_user.is_authenticated %}
-                            <a href="{{ url_for('ticket.open_ticket') }}" title="Novo chamado" class="navbar-item">
-                                ticket
+                            <a href="{{ url_for('ticket.ticket_list') }}" title="Novo chamado" class="navbar-item">
+                                chamados
                             </a>
 
-                            <a href="{{ url_for('main.profile') }}" title="Configurações" class="navbar-item">
-                                profile
-                            </a>
-
+                            <ul class="navbar-item">
+                                <li class='lista1'>
+                                <a href="#" >configurações</a>
+                                <ul class='lista2'>
+                                    <li class='lista-link'><a class='link' href="{{ url_for('main.profile') }}" title="Configurações" >usuario</a></li>
+                                    <li class='lista-link'><a class='link' href="{{ url_for('ticket.status_list') }}">novo status</a></li>
+                                </ul>
+                                </li>
+                            </ul>
 
                             {% endif %}
 
                             {% if not current_user.is_authenticated %}
                             <a href="{{ url_for('auth.login') }}" title="Login" class="navbar-item">
-                                Login
+                                login
                             </a>
                             {% endif %}
 
@@ -64,8 +68,6 @@
                                 sair
                             </a>
                             {% endif %}
-
-
                         </div>
                     </div>
                 </div>
@@ -77,8 +79,6 @@
         {% block content %}
         {% endblock %}
     </div>
-
-
 
         {% block link_js %}
         {% endblock %}

@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="column is-4 is-offset-4">
-    <h3 class="title">Login</h3>
+    <div class="column is-4 is-offset-4" id="div-login-page">
+        <h3 class="title"  style="text-align: center;">Login</h3>
     <div class="box">
 
         {% with messages = get_flashed_messages() %}
@@ -16,16 +16,16 @@
 
         <form method="POST" action="/login">
             <div class="field">
-                <label class="label">Nome de usuario</label>
+                <label class="label">Usuario</label>
                 <div class="control">
-                    <input name="user_name" class="input" type="text" placeholder="nome_usuario" autofocus="">
+                    <input name="user_name" class="input is-defualt" type="text" placeholder="nome_usuario" autofocus="">
                 </div>
             </div>
 
             <div class="field">
                 <label class="label">Password</label>
                 <div class="control">
-                    <input class="input" name="password" type="password" placeholder="********">
+                    <input class="input is-defualt" name="password" type="password" placeholder="********">
                 </div>
             </div>
 
@@ -35,8 +35,9 @@
                     Lembrar-me
                 </label>
             </div>
-
-            <button class="button is-primary">Entrar</button>
+            <div style="text-align: center;">
+                <button class="button is-primary is-outlined"><i class="fa-solid fa-earth-americas"> &nbsp; </i>conectar</button>
+            </div>
         </form>
     </div>
 </div>

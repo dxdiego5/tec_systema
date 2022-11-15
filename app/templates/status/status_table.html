@@ -1,0 +1,187 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+  <div class="table-container">
+    <table id="example" class="table is-striped" style="width:100%">
+
+      {% with messages = get_flashed_messages() %}
+      {% if messages[0] %}
+      <div class="notification is-warning">
+        {{ messages[0] }}
+      </div>
+      {% endif %}
+      {% endwith %}
+
+      <thead>
+        <div class="buttons">
+          <a class="button is-link is-outlined js-modal-trigger" data-target="modal-create-status">
+            <i class="fa-solid fa-ticket"></i> &nbsp; novo status</a>
+        </div>
+        <tr>
+          <th>NOME</th>
+          <th>COR</th>
+          <th style="text-align: right;">OPÇÕES</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        {% if status|length <= 0 %} <div class="notification is-warning">
+          Nenhum registro encontrado <strong>cadastre um novo status</strong>
+  </div>
+  {% endif %}
+
+  {% for info in status %}
+  <tr>
+    <!--  error safe -->
+    <td style="background-color: {{info.color}}; color: #FFFF;">{{info.name | upper}}</td>
+    <td style="background-color: {{info.color}}; color: #FFFF;"> {{info.color}}</td>
+    <!--  error safe -->
+
+    <td style="text-align: right;">
+      <button class="button is-info is-outlined js-modal-trigger" data-target="modal-update-status"
+        onclick="updateStatus('{{info.id}}','{{info.name}}','{{info.color}}')"><i class="fa-solid fa-pen"></i>&nbsp;
+        editar</button>
+      <button class="button is-danger is-outlined js-modal-trigger" data-target="modal-delete-status" onclick="deleteStatus('{{info.id}}','{{info.name}}')"><i class="fa-solid fa-trash-can"></i>&nbsp; remover</button>
+  </tr>
+  <tr>
+    {% endfor %}
+    </tbody>
+    </table>
+</div>
+</div>
+</div>
+
+
+<!-- modal delete status -->
+<div class="modal" id="modal-delete-status">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Remover Status</p>
+      <button class="delete" aria-label="close"></button>
+    </header>
+    <form action="/status" method="post">
+      <input class="input" type="hidden" value="delete" name="status_type" required="required">
+      <input class="input" type="hidden" id="status_id_delete" name="status_id_delete" required="required">
+      <section class="modal-card-body">
+        <div id="alert-delete">
+          tem certeza que deseja remover o status <strong id="status_name_delete"></strong>
+        </div>
+      </section>
+      <footer class="modal-card-foot">
+        <button type="submit" class="button is-danger is-outlined"><i class="fa-solid fa-trash-can"></i>&nbsp; remover</button>
+      </footer>
+    </form>
+  </div>
+</div>
+
+
+<!-- modal create status -->
+<div class="modal" id="modal-create-status">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Novo Status</p>
+      <button class="delete" aria-label="close"></button>
+    </header>
+
+    <form action="/status" method="post">
+      <input class="input" type="hidden" value="create" name="status_type" required="required">
+
+      <section class="modal-card-body">
+        <div class="columns is-desktop is-mobile">
+          <div class="column">
+            <div class="field">
+              <label class="label">Nome</label>
+              <div class="control">
+                <input class="input" type="text" name="status_name" min="3" required="required">
+              </div>
+            </div>
+          </div>
+          <div class="column">
+            <div class="field">
+              <label class="label">Cor</label>
+              <div class="control">
+                <input class="input" type="color" name="status_color" required="required">
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="modal-card-foot">
+        <button type="submit" class="button is-success is-outlined"><i class="fa-solid fa-floppy-disk"></i> &nbsp;
+          salvar
+        </button>
+      </footer>
+
+    </form>
+
+  </div>
+</div>
+
+<!-- modal update status -->
+<div class="modal" id="modal-update-status">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Editar Status</p>
+      <button class="delete" aria-label="close"></button>
+    </header>
+
+    <form action="/status" method="post">
+      <input class="input" type="hidden" id="status_id_update" name="status_id_update" required="required">
+      <input class="input" type="hidden" value="update" name="status_type" required="required">
+
+      <section class="modal-card-body">
+        <div class="columns is-desktop is-mobile">
+          <div class="column">
+            <div class="field">
+              <label class="label">Nome</label>
+              <div class="control">
+                <input class="input" type="text" id="status_name_update" name="status_name_update" min="3" required="required">
+              </div>
+            </div>
+          </div>
+          <div class="column">
+            <div class="field">
+              <label class="label">Cor</label>
+              <div class="control">
+                <input class="input" type="color" id="status_color_update" name="status_color_update" required="required">
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="modal-card-foot">
+        <button type="submit" class="button is-info is-outlined"><i class="fa-solid fa-floppy-disk"></i> &nbsp;
+          atualizar
+        </button>
+      </footer>
+
+    </form>
+
+  </div>
+</div>
+{% endblock content %}
+
+
+{% block link_js %}
+<script type="text/javascript" src="static/js/model-bulma.js"></script>
+
+<script>
+  function updateStatus(id, name, color) {
+    document.getElementById('status_id_update').value = id
+    document.getElementById('status_name_update').value = name
+    document.getElementById('status_color_update').value = color
+  }
+
+
+  function deleteStatus(id, name) {
+    document.getElementById('status_id_delete').value = id
+    document.getElementById('status_name_delete').innerHTML = name
+  }
+</script>
+{% endblock link_js %}

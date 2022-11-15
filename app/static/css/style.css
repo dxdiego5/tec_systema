@@ -1,0 +1,41 @@
+ul {
+    display: inline;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .lista1 {
+    color: white;
+    display: inline-block;
+  }
+  
+  .lista1:hover {
+    background:#5dd2b3;
+  }
+  
+  .lista1:hover .lista2 {
+    display: block;
+  }
+  
+  .lista2 {
+    position: absolute;
+    width: 100px;
+    display: none;
+  }
+  
+  .lista-link {
+    text-align: center;
+    padding: 4px;
+    background: rgb(17, 17, 17);
+    display: block;
+  }
+  
+  .link {
+    display:block !important;
+  }
+  
+  .lista-link:hover {
+    background: #5dd2b3;
+  }
+
+  

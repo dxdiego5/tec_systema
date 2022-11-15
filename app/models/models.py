@@ -57,7 +57,6 @@ class Tickets(db.Model):
     clients_id = db.Column(db.Integer, db.ForeignKey('clients.id', onupdate='CASCADE'))
     client = relationship('Clients', backref = 'clients')
 
-
     status_id = db.Column(db.Integer, db.ForeignKey('status.id', onupdate='CASCADE'))
     status = relationship('Status', backref = 'status')
 
@@ -66,4 +65,6 @@ class Tickets(db.Model):
     repeat_day = db.Column(db.Integer, default=0)
     created_at = db.Column(db.DateTime)
     updated_at = db.Column(db.DateTime)
+    isActive = db.Column(db.Boolean, default=True)
+    
     
