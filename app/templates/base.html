@@ -15,73 +15,82 @@
     {% endblock %}
 
 </head>
+
 <body>
-    <section>
-        <div class="hero is-primary is-widescreen">
-            <nav class="navbar">
-                <div class="container">
+    <nav class="navbar" role="navigation" aria-label="main navigation" style="background-color: rgb(223, 243, 212);">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="{{ url_for('main.index') }}">
+                LOGO
+                <!-- <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28"> -->
+            </a>
 
-                    <div id="navbarMenuHeroA" class="navbar-menu">
-                        <div class="navbar-start teste">
-                            {% if current_user.is_authenticated %}
-                            <h6 class="navbar-item" style="color: white;">Bem vindo, {{current_user.name | lower}}</h6>
-                            {% endif %}
-                        </div>
+            <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
+                data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
 
-                        <div class="navbar-end">
+        <div id="navbarBasicExample" class="navbar-menu">
+            <div class="navbar-start">
+                <a href="{{ url_for('main.index') }}" class="navbar-item">
+                    Home
+                </a>
 
-                            {% if current_user.is_authenticated %}
-                            <a href="{{ url_for('ticket.ticket_list') }}" title="Novo chamado" class="navbar-item">
-                                chamados
-                            </a>
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link">
+                        configurações
+                    </a>
 
-                            <ul class="navbar-item">
-                                <li class='lista1'>
-                                <a href="#" >configurações</a>
-                                <ul class='lista2'>
-                                    <li class='lista-link'><a class='link' href="{{ url_for('main.profile') }}" title="Configurações" >usuario</a></li>
-                                    <li class='lista-link'><a class='link' href="{{ url_for('ticket.status_list') }}">novo status</a></li>
-                                </ul>
-                                </li>
-                            </ul>
-
-                            {% endif %}
-
-                            {% if not current_user.is_authenticated %}
-                            <a href="{{ url_for('auth.login') }}" title="Login" class="navbar-item">
-                                login
-                            </a>
-                            {% endif %}
-
-                            <!-- {% if current_user.is_authenticated %}
-                            <a href="{{ url_for('auth.signup') }}" title="Cadastrar-se" class="navbar-item">
-                                <i class="fa-solid fa-user-plus" title="Cadastrar-se"></i>
-                            </a>
-                            {% endif %} -->
-                            <a href="{{ url_for('main.index') }}" class="navbar-item" title="Home">
-                                home
-                            </a>
-
-                            {% if current_user.is_authenticated %}
-                            <a href="{{ url_for('auth.logout') }}" title="Sair" class="navbar-item"
-                                style="margin-left: 60px !important;">
-                                sair
-                            </a>
-                            {% endif %}
-                        </div>
+                    <div class="navbar-dropdown">
+                        <a class="navbar-item" href="{{ url_for('main.profile') }}">
+                            usuario
+                        </a>
+                        <hr class="navbar-divider">
+                        <a class="navbar-item" href="{{ url_for('status.status_list') }}">
+                            status
+                        </a>
                     </div>
                 </div>
-            </nav>
+                <a class="navbar-item" href="{{ url_for('ticket.ticket_list') }}" title="Novo chamado">
+                    chamados
+                </a>
+
+
+            </div>
+
+            <div class="navbar-end">
+                <div class="navbar-item">
+                    <div class="buttons">
+                        {% if not current_user.is_authenticated %}
+                        <a href="{{ url_for('auth.login') }}" title="Login" class="button is-primary is-outlined">
+                            Login
+                        </a>
+                        {% endif %}
+
+                        {% if current_user.is_authenticated %}
+                        <a href="{{ url_for('auth.logout') }}" title="Sair" class="button is-info is-outlined">
+                            sair
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
         </div>
-    </section>
+    </nav>
+
 
     <div class="container is-widescreen" style="margin-top:10px;">
         {% block content %}
         {% endblock %}
     </div>
 
-        {% block link_js %}
-        {% endblock %}
+
+    {% block link_js %}
+    {% endblock %}
+    <script src="static/js/close-notification-bulma.js"></script>
+    <script src="static/js/timeout-div-alert.js"></script>
 </body>
 
 </html>

@@ -24,6 +24,8 @@ ul {
   }
   
   .lista-link {
+    border-radius: 5px;
+
     text-align: center;
     padding: 4px;
     background: rgb(17, 17, 17);
@@ -35,7 +37,7 @@ ul {
   }
   
   .lista-link:hover {
-    background: #5dd2b3;
+    background: #8bd8c3;
   }
 
   

@@ -42,4 +42,6 @@ def create_app():
     from .routes.ticket import ticket as ticket_blueprint
     app.register_blueprint(ticket_blueprint)
 
+    from .routes.status import status as status_blueprint
+    app.register_blueprint(status_blueprint)
     return app

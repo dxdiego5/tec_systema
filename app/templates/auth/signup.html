@@ -6,10 +6,12 @@
     <div class="box">
 
         {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            <div class="notification is-danger">
-                {{ messages[0] }}. Vá para <a href="{{ url_for('auth.login') }}">página de login</a>.
-            </div>
+        {% if messages[0] %}
+        <article id="alert" class="message is-info">
+          <div class="message-body">
+            {{ messages[0] }}. Vá para <a href="{{ url_for('auth.login') }}">página de login</a>.
+          </div>
+        </article>
         {% endif %}
         {% endwith %}
 

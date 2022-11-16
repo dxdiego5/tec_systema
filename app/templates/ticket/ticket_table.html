@@ -7,6 +7,19 @@
 
   <div class="table-container">
     <table id="example" class="table is-striped" style="width:100%">
+
+
+      {% with messages = get_flashed_messages() %}
+      {% if messages[0] %}
+      <article id="alert" class="message is-info">
+        <div class="message-body">
+          {{messages[0]}}
+        </div>
+      </article>
+      {% endif %}
+      {% endwith %}
+
+
       <thead>
         <div class="buttons">
           <a class="button is-link is-outlined"href="{{ url_for('ticket.open_ticket') }}"> 

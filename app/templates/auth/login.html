@@ -6,13 +6,14 @@
     <div class="box">
 
         {% with messages = get_flashed_messages() %}
-        {% if messages %}
-        <div class="notification is-danger">
-            {{ messages[0] }}
-        </div>
+        {% if messages[0] %}
+        <article id="alert" class="message is-danger">
+          <div class="message-body">
+            {{messages[0]}}
+          </div>
+        </article>
         {% endif %}
         {% endwith %}
-
 
         <form method="POST" action="/login">
             <div class="field">
